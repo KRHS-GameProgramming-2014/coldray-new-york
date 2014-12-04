@@ -36,6 +36,15 @@ while True:
                 player1.go("down")
             if event.key == pygame.K_a:
                 player1.go("left")
+                
+            if event.key == pygame.K_UP:
+                player2.go("up")
+            if event.key == pygame.K_RIGHT:
+                player2.go("right")
+            if event.key == pygame.K_DOWN:
+                player2.go("down")
+            if event.key == pygame.K_LEFT:
+                player2.go("left")
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 player1.go("stop up")
@@ -45,6 +54,15 @@ while True:
                 player1.go("stop down")
             if event.key == pygame.K_a:
                 player1.go("stop left")
+
+            if event.key == pygame.K_UP:
+                player2.go("stop up")
+            if event.key == pygame.K_RIGHT:
+                player2.go("stop right")
+            if event.key == pygame.K_DOWN:
+                player2.go("stop down")
+            if event.key == pygame.K_LEFT:
+                player2.go("stop left")
                 
         
     if len(balls) < 10:
@@ -85,7 +103,6 @@ while True:
         screen.blit(ball.image, ball.rect)
     screen.blit(player1.image, player1.rect)
     screen.blit(player2.image, player2.rect)
-    (player2, -50, 50) 
     pygame.display.flip()
     clock.tick(60)
         
