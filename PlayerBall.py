@@ -20,6 +20,10 @@ class PlayerBall(Ball):
                             pygame.image.load("images/Player/mcp2right.PNG"),
                             pygame.image.load("images/Player/mcp3right.PNG")]
 						    
+        self.upPunchImages = [pygame.image.load("images/Player/punchUP.PNG")]
+        self.rightPunchImages = [pygame.image.load("images/Player/punchRight.PNG")]
+        self.leftPunchImages = [pygame.image.load("images/Player/punchLeft.PNG")]
+        self.downPunchImages = [pygame.image.load("images/Player/punchDown.PNG")]
                    
         self.facing = "up"
         self.changed = False
@@ -31,9 +35,20 @@ class PlayerBall(Ball):
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = 10
+        self.punching = False
+        self.punchTime = 0
+        self.maxPunchTime = 1*60
             
     def update(self, width, height):
         Ball.update(self, width, height)
+        if self.punchTime > 0:
+			if self.punchTime < self.maxPunchTime:
+				self.punchTime += 1
+				self.changed = True
+			else:
+				self.punchTime = 0
+				self.punching = False
+				self.changed = True
         self.animate()
         self.changed = False
         
@@ -61,17 +76,34 @@ class PlayerBall(Ball):
             else:
                 self.frame = 0
         
-        if self.changed:    
-            if self.facing == "up":
-                self.images = self.upImages
-            elif self.facing == "down":
-                self.images = self.downImages
-            elif self.facing == "right":
-                self.images = self.rightImages
-            elif self.facing == "left":
-                self.images = self.leftImages
+        if self.changed:
+			if self.punching:
+				self.maxFrame = len(self.punchUpImages)
+				if self.facing == "up":
+					self.images = self.upPunchImages
+				elif self.facing == "down":
+					self.images = self.downPunchImages
+				elif self.facing == "right":
+					self.images = self.rightPunchImages
+				elif self.facing == "left":
+					self.images = self.leftPunchImages
+
+			else:
+				self.maxFrame = len(self.punchUpImages)
+				if self.facing == "up":
+					self.images = self.upImages
+				elif self.facing == "down":
+					self.images = self.downImages
+				elif self.facing == "right":
+					self.images = self.rightImages
+				elif self.facing == "left":
+					self.images = self.leftImages
             
             self.image = self.images[self.frame]
+    
+    def punch(self):
+		self.punching = True
+		self.punchTime = 1
     
     def go(self, direction):
         if direction == "up":
