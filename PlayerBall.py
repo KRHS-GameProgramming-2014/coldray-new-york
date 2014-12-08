@@ -89,7 +89,7 @@ class PlayerBall(Ball):
 					self.images = self.leftPunchImages
 
 			else:
-				self.maxFrame = len(self.punchUpImages)
+				self.maxFrame = len(self.upImages)
 				if self.facing == "up":
 					self.images = self.upImages
 				elif self.facing == "down":
