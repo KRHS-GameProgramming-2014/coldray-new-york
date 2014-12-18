@@ -34,7 +34,7 @@ class PlayerBall(Ball):
         self.maxWait = 60*.25
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
-        self.maxSpeed = 10
+        self.maxSpeed = 5
         #self.punching = False
         #self.punchTime = 0
         #self.maxPunchTime = 1*60
@@ -54,7 +54,7 @@ class PlayerBall(Ball):
         self.animate()
         self.changed = False
         
-    def collideWall(self, width, height):
+    def collideEdge(self, width, height):
         if not self.didBounceX:
             #print "trying to hit Wall"
             if self.rect.left < 0 or self.rect.right > width:
@@ -66,6 +66,23 @@ class PlayerBall(Ball):
                 self.speedy = 0
                 self.didBounceY = True
                 #print "hit xWall"
+    
+    def collideWall(self, wall):
+		if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
+			if self.rect.bottom > wall.rect.top and self.rect.top < wall.rect.bottom:
+				if not self.didBounceX and self.speedx != 0:
+					self.speedx = -self.speedx*2
+					self.move()
+					self.speedx = 0
+					print "x"
+					self.didBouncex = True
+				if not self.didBounceY and self.speedy != 0:
+					self.speedy = -self.speedy*2
+					self.move()
+					self.speedy = 0
+					print "y"
+					self.didBounceY = True
+					#print "hit Ball"
     
     def animate(self):
         if self.waitCount < self.maxWait:
@@ -103,6 +120,7 @@ class PlayerBall(Ball):
             elif self.facing == "left":
                 self.images = self.leftImages   
             self.image = self.images[self.frame]
+            self.rect = self.image.get_rect(center = self.rect.center)
     
     #def punch(self):
     #   self.punching = True
