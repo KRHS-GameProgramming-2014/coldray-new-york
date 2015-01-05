@@ -1,5 +1,6 @@
 #Code from Riley Skinner and Brian Calagahan
 #https://code.google.com/p/thetempleoflobsterman/
+#spooners code
 import pygame, math
 
 class Wall():
@@ -9,3 +10,15 @@ class Wall():
 		height = br[1] - tl[1]
 		self.image = pygame.transform.scale(self.image, [width, height])	
 		self.rect = self.image.get_rect(topleft = tl)
+
+
+
+
+
+
+
+
+
+
+
+
