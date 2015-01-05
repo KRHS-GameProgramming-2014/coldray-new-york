@@ -14,7 +14,7 @@ height = 610
 size = width, height
 
 bgColor = r,g,b = 100, 30, 234
-bgI = pygame.image.load("map1.png")
+bgI = pygame.image.load("images/map1.png")
 bgR = bgI.get_rect()
 
 walls = [Wall([13, 12], [931, 28]),
