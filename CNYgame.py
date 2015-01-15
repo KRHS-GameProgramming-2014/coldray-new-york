@@ -19,7 +19,7 @@ size = width, height
 screen = pygame.display.set_mode(size)
 
 bgColor = r,g,b = 100, 30, 234
-bgI = pygame.image.load("images\map2.png")
+bgI = pygame.image.load("images/map1.png")
 bgR = bgI.get_rect()
 bgImage = pygame.image.load("images/Screens/Screen Saver3.png").convert()
 bgRect = bgImage.get_rect()
