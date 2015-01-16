@@ -27,16 +27,20 @@ bgRect = bgImage.get_rect()
 walls = [Wall([13, 12], [931, 28]),
          Wall([13, 12], [26, 593]),
          Wall([21, 254], [90, 271]),
-         Wall([163, 255], [577, 268]),
+         Wall([184, 255], [577, 268]),
          Wall([270, 256], [285, 576]),
          Wall([562, 262], [576, 349]),
          Wall([23, 157], [254, 173]),
-         Wall([317, 157], [752, 175]),
+         Wall([345, 157], [752, 175]),
          Wall([739, 157], [755, 351]),
          Wall([512, 28], [529, 158]),
          Wall([913, 14], [931, 592]),
-         Wall([560, 416], [576, 577]),
-         Wall([739, 415], [755, 575])]
+         Wall([560, 432], [576, 577]),
+         Wall([739, 432], [755, 575]),
+         Wall([62, 46], [222, 125]),
+         Wall([24, 576], [932, 591]),
+         Wall([93, 351], [173, 477]),
+         Wall([482, 61], [512, 106])]
          
     
 
@@ -117,13 +121,13 @@ while True:
 					player2.go("stop left")
                 
 			
-		if len(balls) < 5:
+		if len(balls) < 2:
 			if random.randint(0, .25*60) == 0:
 				balls += [Ball("images/Ball/spinnything.png",
 						  [random.randint(0,10), random.randint(0,10)],
 						  [random.randint(100, width-100), random.randint(100, height-100)])
 						  ]
-		if len(balls) < 5:
+		if len(balls) < 2:
 			if random.randint(0, .25*60) == 0:
 				balls += [Ball("images/Ball/crabman.png",
 						  [random.randint(0,10), random.randint(0,10)],
