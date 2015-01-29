@@ -20,7 +20,7 @@ screen = pygame.display.set_mode(size)
 bgColor = r,g,b = 100, 30, 234
 bgI = pygame.image.load("images\map2.png")
 bgR = bgI.get_rect()
-bgImage = pygame.image.load("images/Screens/Screen Saver3.png").convert()
+bgImage = pygame.image.load("images/Screens/damian.png").convert()
 bgRect = bgImage.get_rect()
 
 
@@ -35,8 +35,8 @@ title = Text([height/4, width/8], "Hello HUD!!", 20)
 run = False
 
 startButton = Button([width/2, height-300], 
-                                     "images/Button/Start Base.png", 
-                                     "images/Button/Start Clicked.png")
+                                     "images/Button/newbutton.png", 
+                                     "images/Button/newbuttonc.png")
 
 while True:
         while not run:
