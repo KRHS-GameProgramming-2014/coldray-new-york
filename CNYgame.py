@@ -42,8 +42,8 @@ walls = [Wall([13, 12], [931, 28]),
 
 
 
-player1 = PlayerBall([width/3, height/3])
-player2 = PlayerBall([2*width/3, 2*height/3])
+player1 = PlayerBall(1, [width/3, height/3])
+player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
 balls = []
 balls += [Ball("images/Ball/crabman.png", [4,5], [100, 125])]
