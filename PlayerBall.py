@@ -92,7 +92,7 @@ class PlayerBall(Ball):
         if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
             if self.rect.bottom > wall.rect.top and self.rect.top < wall.rect.bottom:
                 if not self.didBounceX and self.speedx != 0:
-                    self.speedx = -self.speedx*2
+                    self.speedx = -self.speedx*1
                     self.move()
                     self.speedx = 0
                     print "x"

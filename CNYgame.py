@@ -151,8 +151,8 @@ while True:
             for wall in walls:
                 player1.collideWall(wall)
                 player2.collideWall(wall)
-             #   for ball in ball:
-              #      ball.collideWall(wall)
+                for ball in balls:
+                    ball.collideWall(wall)
                 
             for bully in balls:
                 for victem in balls:

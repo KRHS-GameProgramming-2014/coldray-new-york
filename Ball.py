@@ -65,15 +65,37 @@ class Ball():
 		x2 = pt[0]
 		y2 = pt[1]
 		return math.sqrt(((x2-x1)**2) + ((y2-y1)**2))
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        
+        
+        def collideWall(self, wall):
+            if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
+                if self.rect.bottom > wall.rect.top and self.rect.top < wall.rect.bottom:
+                    if not self.didBounceX and self.speedx != 0:
+                        self.speedx = -self.speedx*1
+                        self.move()
+                        self.speedx = 0
+                        print "x"
+                        self.didBouncex = True
+                    if not self.didBounceY and self.speedy != 0:
+                        self.speedy = -self.speedy*2
+                        self.move()
+                        self.speedy = 0
+                        print "y"
+                        self.didBounceY = True
+                        print "hit Ball"
+                        
+                    
+                    
+
+
+            
+            
+            
+            
+            
+            
+            
+            
 		
 		
 		
