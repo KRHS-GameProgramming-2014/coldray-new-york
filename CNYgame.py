@@ -181,7 +181,7 @@ while True:
             for ball in balls:
                 if not ball.living:
                     balls.remove(ball)
-                    score.increaseScore(100)
+                    score.increaseScore(1)
             if timerWait < timerWaitMax:
                 timerWait += 10
                         
