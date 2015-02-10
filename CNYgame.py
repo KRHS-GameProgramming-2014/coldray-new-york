@@ -6,6 +6,8 @@ from Wall import Wall
 from HUD import Text
 from HUD import Score
 from Button import Button
+from pewpew import Bullet
+from crabrock import Gun
 
 
 pygame.init()
@@ -48,6 +50,8 @@ walls = [Wall([13, 12], [931, 28]),
 
 player1 = PlayerBall(1, [width/3, height/3])
 player2 = PlayerBall(2, [2*width/3, 2*height/3])
+
+bullets = []
 
 balls = []
 balls += [Ball("images/Ball/crabman.png", [4,5], [100, 125])]
@@ -148,6 +152,19 @@ while True:
             for ball in balls:
                 ball.update(width, height)
                 
+            for bullet in bullets:
+                bullet.update(width, height)
+               
+            for bullet in bullets:
+                bullet.collidePlayer(player1)
+                bullet.collidePlayer(player2)
+                player2.collideBullet(bullet)
+                player1.collideBullet(bullet)
+
+            for bullet in bullets:
+                if not bullet.living:
+                    bullets.remove(bullet)
+                
             for wall in walls:
                 player1.collideWall(wall)
                 player2.collideWall(wall)
@@ -179,6 +196,8 @@ while True:
                 screen.blit(ball.image, ball.rect)
             for wall in walls:
                 screen.blit(wall.image, wall.rect)
+            for bullet in bullets:
+                screen.blit(bullet.image, bullet.rect)
             screen.blit(timer.image, timer.rect)
             screen.blit(score.image, score.rect)
             screen.blit(player1.image, player1.rect)
