@@ -51,3 +51,5 @@ class Score(Text):
                 self.score = 0
                 self.change = True
                 
+
+                
