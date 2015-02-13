@@ -99,8 +99,6 @@ while True:
                         player1.go("down")
                     if event.key == pygame.K_a:
                         player1.go("left")
-                    if event.key == pygame.K_q:
-                        player1.punch()
                         
                     if event.key == pygame.K_UP:
                         player2.go("up")
@@ -110,8 +108,6 @@ while True:
                         player2.go("down")
                     if event.key == pygame.K_LEFT:
                         player2.go("left")
-                    if event.key == pygame.K_m:
-                        player2.punch()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_w:
                         player1.go("stop up")
@@ -121,8 +117,6 @@ while True:
                         player1.go("stop down")
                     if event.key == pygame.K_a:
                         player1.go("stop left")
-                    if event.key == pygame.K_q:
-                        player1.go("stop punch")
 
                     if event.key == pygame.K_UP:
                         player2.go("stop up")
@@ -132,8 +126,6 @@ while True:
                         player2.go("stop down")
                     if event.key == pygame.K_LEFT:
                         player2.go("stop left")
-                    if event.key == pygame.K_m:
-                        player2.go("stop punch")
                     
                 
             if len(balls) < 2:

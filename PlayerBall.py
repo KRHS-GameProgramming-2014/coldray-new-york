@@ -126,6 +126,12 @@ class PlayerBall(Ball):
                     self.didBounceY = True
                     #print "hit Ball"
     
+    def collideLevelChangeWall(self, wall):
+        if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
+            if self.rect.bottom > wall.rect.top and self.rect.top < wall.rect.bottom:
+                return True
+        return False
+    
     def animate(self):
         if self.waitCount < self.maxWait:
             self.waitCount += 2
