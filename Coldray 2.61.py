@@ -7,8 +7,6 @@ from LevelChangeWall import LevelChangeWall
 from HUD import Text
 from HUD import Score
 from Button import Button
-from pewpew import Bullet
-from crabrock import Gun
 
 pygame.init()
   
@@ -52,10 +50,8 @@ lcWalls = [LevelChangeWall([530,30],[735,155], "map2")]
 player1 = PlayerBall(1, [width/3, height/3])
 player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
-bullets = []
-
 balls = []
-balls += [Ball("images/Ball/crabman.png", [0,0], [150, 200])]
+balls += [Ball("images/Ball/crabman.png", [4,5], [100, 125])]
 
 timer = Score([80, height - 25], "Time:",36)
 timerWait = 0
@@ -84,10 +80,6 @@ while True:
                                 if startButton.release(event.pos):
                                         run = True
                                         
-                                             
-                                        
-                                        
-                                        
                 bgColor = r,g,b
                 screen.fill(bgColor)
                 screen.blit(bgImage, bgRect)
@@ -107,8 +99,6 @@ while True:
                         player1.go("down")
                     if event.key == pygame.K_a:
                         player1.go("left")
-                    if event.key == pygame.K_q:
-                        player1.punch()
                         
                     if event.key == pygame.K_UP:
                         player2.go("up")
@@ -118,8 +108,6 @@ while True:
                         player2.go("down")
                     if event.key == pygame.K_LEFT:
                         player2.go("left")
-                    if event.key == pygame.K_m:
-                        player2.punch()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_w:
                         player1.go("stop up")
@@ -129,8 +117,6 @@ while True:
                         player1.go("stop down")
                     if event.key == pygame.K_a:
                         player1.go("stop left")
-                    if event.key == pygame.K_q:
-                        player1.go("stop punch")
 
                     if event.key == pygame.K_UP:
                         player2.go("stop up")
@@ -140,8 +126,6 @@ while True:
                         player2.go("stop down")
                     if event.key == pygame.K_LEFT:
                         player2.go("stop left")
-                    if event.key == pygame.K_m:
-                        player2.go("stop punch")
                     
                 
             if len(balls) < 2:
@@ -156,8 +140,6 @@ while True:
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)])
                               ]
-                              
-            
       
       
             player1.update(width, height)
@@ -167,32 +149,14 @@ while True:
             for ball in balls:
                 ball.update(width, height)
                 
-            for bullet in bullets:
-                bullet.update(width, height)
-               
-            for bullet in bullets:
-                bullet.collidePlayer(player1)
-                bullet.collidePlayer(player2)
-                player2.collideBullet(bullet)
-                player1.collideBullet(bullet)
-
-            for bullet in bullets:
-                if not bullet.living:
-                    bullets.remove(bullet)
-                
             for wall in walls:
                 player1.collideWall(wall)
                 player2.collideWall(wall)
-
-                for ball in balls:
-                    ball.collideWall(wall)
-
             for wall in lcWalls:
                 if player1.collideLevelChangeWall(wall) or player2.collideLevelChangeWall(wall):
 					bgI = pygame.image.load("images/Screens/" + wall.target + ".png")
 					bgR = bgI.get_rect()
 					walls = []
-
                 
             for bully in balls:
                 for victem in balls:
@@ -219,13 +183,8 @@ while True:
                 screen.blit(ball.image, ball.rect)
             for wall in walls:
                 screen.blit(wall.image, wall.rect)
-
-            for bullet in bullets:
-                screen.blit(bullet.image, bullet.rect)
-
             for wall in lcWalls:
                 screen.blit(wall.image, wall.rect)
-
             screen.blit(timer.image, timer.rect)
             screen.blit(score.image, score.rect)
             screen.blit(player1.image, player1.rect)
