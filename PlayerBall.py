@@ -79,7 +79,7 @@ class PlayerBall(Ball):
         self.maxSpeed = 5
         self.punching = False
         self.punchTime = 0
-        self.maxPunchTime = .5*60
+        self.maxPunchTime = 1*60
             
     def update(self, width, height):
         Ball.update(self, width, height)
@@ -98,16 +98,16 @@ class PlayerBall(Ball):
         
     def collideEdge(self, width, height):
         if not self.didBounceX:
-            #print "trying to hit Wall"
+            print "trying to hit Wall"
             if self.rect.left < 0 or self.rect.right > width:
                 self.speedx = 0
                 self.didBounceX = True
-                #print "hit xWall"
+                print "hit xWall"
         if not self.didBounceY:
             if self.rect.top < 0 or self.rect.bottom > height:
                 self.speedy = 0
                 self.didBounceY = True
-                #print "hit xWall"
+                print "hit xWall"
     
     def collideWall(self, wall):
         if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
@@ -116,15 +116,15 @@ class PlayerBall(Ball):
                     self.speedx = -self.speedx*2
                     self.move()
                     self.speedx = 0
-                    #print "x"
+                    print "x"
                     self.didBouncex = True
                 if not self.didBounceY and self.speedy != 0:
                     self.speedy = -self.speedy*2
                     self.move()
                     self.speedy = 0
-                    #print "y"
+                    print "y"
                     self.didBounceY = True
-                    #print "hit Ball"
+                    print "hit Ball"
     
     def collideLevelChangeWall(self, wall):
         if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
@@ -145,7 +145,7 @@ class PlayerBall(Ball):
         
         if self.changed:    
             if self.punching:
-                self.maxFrame = len(self.upPunchImages)-1
+                self.maxFrame = len(self.punchUpImages)-1
                 if self.facing == "up":
                     self.images = self.upPunchImages
                 elif self.facing == "down":
@@ -168,7 +168,7 @@ class PlayerBall(Ball):
                 
             if self.frame > self.maxFrame:
                 self.frame = 0
-            #print self.frame, self.maxFrame, len(self.images)
+            print self.frame, self.maxFrame, len(self.images)
             self.image = self.images[self.frame]
             self.rect = self.image.get_rect(center = self.rect.center)
 

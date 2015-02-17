@@ -41,7 +41,8 @@ walls = [Wall([13, 12], [931, 28]),
          Wall([24, 576], [932, 591]),
          Wall([93, 351], [173, 477]),
          Wall([482, 61], [512, 106])]
-lcWalls = [LevelChangeWall([530,30],[735,155], "map2")]
+lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
+		   LevelChangeWall([793,576],[890,590], "map2")]
          
     
 
@@ -144,7 +145,7 @@ while True:
                               ]
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
-                    balls += [Ball("images/Ball/crabman.png",
+                    balls += [Ball("images/Screens/Mr.New.png",
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)])
                               ]
