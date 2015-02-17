@@ -113,7 +113,7 @@ class PlayerBall(Ball):
         if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
             if self.rect.bottom > wall.rect.top and self.rect.top < wall.rect.bottom:
                 if not self.didBounceX and self.speedx != 0:
-                    self.speedx = -self.speedx*2
+                    self.speedx = -self.speedx*1
                     self.move()
                     self.speedx = 0
                     print "x"
@@ -202,7 +202,24 @@ class PlayerBall(Ball):
             self.speedx = -self.maxSpeed
         elif direction == "stop left":
             self.speedx = 0
+            
+    def shoot(self, command):
+        if command == "stop":
+            self.shooting = False
+        elif command == "fire":
+            return [Bullet(self.rect.center, self.gun.gunSpeed, self.facing, self)]
+            self.shooting = True
+            return [Bullet(self.rect.center, self.gun.gunSpeed, self.facing, self)]
+        else:
+            return []
 
+    def collideBullet(self, other, owner):
+        self.owner = owner
+        if other != self.owner:
+            if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+                if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+                    self.living = False
+                    print "dead"  
 
 
 
