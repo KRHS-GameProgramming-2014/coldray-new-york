@@ -145,7 +145,7 @@ class PlayerBall(Ball):
         
         if self.changed:    
             if self.punching:
-                self.maxFrame = len(self.punchUpImages)-1
+                self.maxFrame = len(self.upPunchImages)-1
                 if self.facing == "up":
                     self.images = self.upPunchImages
                 elif self.facing == "down":
