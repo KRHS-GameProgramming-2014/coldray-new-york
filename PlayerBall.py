@@ -79,7 +79,7 @@ class PlayerBall(Ball):
         self.maxSpeed = 5
         self.punching = False
         self.punchTime = 0
-        self.maxPunchTime = 1*60
+        self.maxPunchTime = .15*60
             
     def update(self, width, height):
         Ball.update(self, width, height)
