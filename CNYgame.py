@@ -43,8 +43,8 @@ walls = [Wall([13, 12], [931, 28]),
          Wall([24, 576], [932, 591]),
          Wall([93, 351], [173, 477]),
          Wall([482, 61], [512, 106])]
-lcWalls = [LevelChangeWall([530,30],[735,155], "map2")]
-		   LevelChangeWall([793,576],[890,590], "map2")]
+lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
+           LevelChangeWall([793,576],[890,590], "map2")]
          
     
 
@@ -162,6 +162,7 @@ while True:
             player2.update(width, height)
             timer.update()
             score.update()
+            
             for vision in visions:
                 vision.update()
             
@@ -186,9 +187,9 @@ while True:
                 player2.collideWall(wall)
             for wall in lcWalls:
                 if player1.collideLevelChangeWall(wall) or player2.collideLevelChangeWall(wall):
-					bgI = pygame.image.load("images/Screens/" + wall.target + ".png")
-					bgR = bgI.get_rect()
-					walls = []
+                    bgI = pygame.image.load("images/Screens/" + wall.target + ".png")
+                    bgR = bgI.get_rect()
+                    walls = []
 
             for bully in balls:
                 for victem in balls:
