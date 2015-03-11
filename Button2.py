@@ -24,8 +24,8 @@ bgImage = pygame.image.load("images/Screens/damian.png").convert()
 bgRect = bgImage.get_rect()
 
 
-player1 = PlayerBall([width/3, height/3])
-player2 = PlayerBall([2*width/3, 2*height/3])
+player1 = PlayerBall(1, [width/3, height/3])
+player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
 balls = []
 balls += [Ball("images/Ball/crabman.png", [4,5], [100, 125])]
@@ -35,8 +35,8 @@ title = Text([height/4, width/8], "Hello HUD!!", 20)
 run = False
 
 startButton = Button([width/2, height-300], 
-                                     "images/Button/newbutton.png", 
-                                     "images/Button/newbuttonc.png")
+                                     "images/Button/oobi.png", 
+                                     "images/Button/oobi.png")
 
 while True:
         while not run:
