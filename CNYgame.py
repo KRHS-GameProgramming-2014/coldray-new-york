@@ -92,6 +92,12 @@ while True:
                 screen.blit(startButton.image, startButton.rect)
                 pygame.display.flip()
                 clock.tick(60)
+                   
+        players = [PlayerBall([width/2, height/2])]
+        visions = []
+        for PLayerBall in Players:
+                visions += [Vision("small", player)]
+    
 
         while run:
             for event in pygame.event.get():
