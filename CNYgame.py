@@ -93,10 +93,9 @@ while True:
                 pygame.display.flip()
                 clock.tick(60)
                    
-        players = [PlayerBall([width/2, height/2])]
-        visions = []
-        for PLayerBall in Players:
-                visions += [Vision("small", player)]
+      #  players = [PlayerBall([width/2, height/2])]
+      #for PlayerBall in Players:
+           #     visions += [Vision("small", player)]
     
 
         while run:
@@ -169,8 +168,8 @@ while True:
             timer.update()
             score.update()
             
-            for vision in visions:
-                vision.update()
+         #   for vision in visions:
+           #     vision.update()
             
             for ball in balls:
                 ball.update(width, height)
@@ -232,7 +231,7 @@ while True:
             screen.blit(score.image, score.rect)
             screen.blit(player1.image, player1.rect)
             screen.blit(player2.image, player2.rect)
-            screen.blit(vision.image, vision.rect)
+          #  screen.blit(vision.image, vision.rect)
             pygame.display.flip()
             clock.tick(60)
 
