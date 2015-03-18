@@ -220,6 +220,6 @@ class PlayerBall(Ball):
                 if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                     self.living = False
                     print "dead"  
-
+    
 
 
