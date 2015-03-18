@@ -7,6 +7,8 @@ from LevelChangeWall import LevelChangeWall
 from HUD import Text
 from HUD import Score
 from Button import Button
+from Vision import Vision
+from crabrock import Gun
 
 pygame.init()
 
@@ -39,21 +41,23 @@ walls = [Wall([13, 12], [931, 28]),
          Wall([739, 432], [755, 575]),
          Wall([62, 46], [222, 125]),
          Wall([24, 576], [932, 591]),
-         Wall([93, 351], [173,
-         477]),
+         Wall([93, 351], [173, 477]),
          Wall([482, 61], [512, 106])]
 lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
-           LevelChangeWall([482, 61], [512, 106], "map2")]
-
-
+           LevelChangeWall([793,576],[890,590], "map2")]
+         
+    
 
 
 
 player1 = PlayerBall(1, [width/3, height/3])
 player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
+bullets = []
+
 balls = []
-balls += [Ball("images/Ball/crabman.png", [4,5], [100, 125])]
+balls += [Ball("images/Ball/eye.png", [0,0], [150, 200])]
+
 
 timer = Score([80, height - 25], "Time:",36)
 timerWait = 0
@@ -135,9 +139,10 @@ while True:
                         player2.go("stop down")
                     if event.key == pygame.K_LEFT:
                         player2.go("stop left")
-
-
-
+                    if event.key == pygame.K_m:
+                        player2.go("stop punch")
+                    
+                
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
                     balls += [Ball("images/Ball/Capture5.png",
@@ -146,20 +151,39 @@ while True:
                               ]
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
-                    balls += [Ball("images/Ball/crabman.png",
+                    balls += [Ball("images/Ball/eye.png",
                               [random.randint(0,10), random.randint(0,10)],
-                              [random.randint(100, width-100), random.randint(100, height-100)])
-                              ]
-
-
+                              [random.randint(100, width-100), random.randint(100, height-100)]
+                            )]
+                              
+            
+      
+      
             player1.update(width, height)
             player2.update(width, height)
             timer.update()
             score1.update()
             score2.update()
+            
+         #   for vision in visions:
+           #     vision.update()
+            
             for ball in balls:
                 ball.update(width, height)
+                
+            for bullet in bullets:
+                bullet.update(width, height)
+               
+            for bullet in bullets:
+                bullet.collidePlayer(player1)
+                bullet.collidePlayer(player2)
+                player2.collideBullet(bullet)
+                player1.collideBullet(bullet)
 
+            for bullet in bullets:
+                if not bullet.living:
+                    bullets.remove(bullet)
+                
             for wall in walls:
                 player1.collideWall(wall)
                 player2.collideWall(wall)
@@ -187,7 +211,6 @@ while True:
             else:
                 timerWait = 0
                 timer.increaseScore(.1)
-
             bgColor = r,g,b
             screen.fill(bgColor)
             screen.blit(bgI, bgR)
@@ -195,6 +218,10 @@ while True:
                 screen.blit(ball.image, ball.rect)
             for wall in walls:
                 screen.blit(wall.image, wall.rect)
+
+            for bullet in bullets:
+                screen.blit(bullet.image, bullet.rect)
+
             for wall in lcWalls:
                 screen.blit(wall.image, wall.rect)
             screen.blit(timer.image, timer.rect)
@@ -202,6 +229,7 @@ while True:
             screen.blit(score2.image, score2.rect)
             screen.blit(player1.image, player1.rect)
             screen.blit(player2.image, player2.rect)
+          #  screen.blit(vision.image, vision.rect)
             pygame.display.flip()
             clock.tick(60)
 
