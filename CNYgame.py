@@ -9,10 +9,11 @@ from HUD import Score
 from Button import Button
 from Vision import Vision
 from crabrock import Gun
+from health import HealthBar
 
 
 pygame.init()
-  
+
 clock = pygame.time.Clock()
 
 
@@ -54,10 +55,16 @@ lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
 player1 = PlayerBall(1, [width/3, height/3])
 player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
+#healthbar = HealthBar([width - 75, 125])  #DEFAULT: 100 MODED: 200
+
 bullets = []
 
 balls = []
-balls += [Ball("images/Ball/eye.png", [0,0], [150, 200])]
+balls += [Ball("images/Ball/crabman.png", [0,0], [150, 200])]
+
+pygame.mixer.music.load("Music/crny.mp3")
+pygame.mixer.music.play(-1, 0.0)
+
 
 
 timer = Score([80, height - 25], "Time:",36)
@@ -66,7 +73,9 @@ timerWaitMax =20
 
 title = Text([height/4, width/8], "Hello HUD!!", 20)
 
-score = Score([width-80,height-25], "Score:", 36)
+score1 = Score([width-220,height-25], "HUBBA:", 36)
+score2 = Score([width-80,height-25], "BUBBA:", 36)
+
 
 run = False
 
@@ -86,18 +95,13 @@ while True:
                         if event.type == pygame.MOUSEBUTTONUP:
                                 if startButton.release(event.pos):
                                         run = True
-                                        
+
                 bgColor = r,g,b
                 screen.fill(bgColor)
                 screen.blit(bgImage, bgRect)
                 screen.blit(startButton.image, startButton.rect)
                 pygame.display.flip()
                 clock.tick(60)
-                   
-      #  players = [PlayerBall([width/2, height/2])]
-      #for PlayerBall in Players:
-           #     visions += [Vision("small", player)]
-    
 
         while run:
             for event in pygame.event.get():
@@ -113,7 +117,7 @@ while True:
                         player1.go("left")
                     if event.key == pygame.K_q:
                         player1.punch()
-                        
+
                     if event.key == pygame.K_UP:
                         player2.go("up")
                     if event.key == pygame.K_RIGHT:
@@ -156,7 +160,7 @@ while True:
                               ]
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
-                    balls += [Ball("images/Ball/eye.png",
+                    balls += [Ball("images/Ball/crabman.png",
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)]
                             )]
@@ -167,7 +171,13 @@ while True:
             player1.update(width, height)
             player2.update(width, height)
             timer.update()
-            score.update()
+
+            score1.update()
+            score2.update()
+
+            
+            HealthBar.update
+
             
          #   for vision in visions:
            #     vision.update()
@@ -200,21 +210,31 @@ while True:
             for bully in balls:
                 for victem in balls:
                     bully.collideBall(victem)
+
+                if bully.collidePlayer(player1):
+                    score1.increaseScore()
+                if bully.collidePlayer(player2):
+                    score2.increaseScore()
+
+
+
                     bully.collidePlayer(player1)
                     bully.collidePlayer(player2)
                     
+            #if player1.health <= 0:
+             #   player1.living = False
                     
+                    
+
             for ball in balls:
                 if not ball.living:
                     balls.remove(ball)
-                    score.increaseScore(1)
             if timerWait < timerWaitMax:
                 timerWait += 10
 
             else:
                 timerWait = 0
                 timer.increaseScore(.1)
-            score.update()
             bgColor = r,g,b
             screen.fill(bgColor)
             screen.blit(bgI, bgR)
@@ -229,9 +249,11 @@ while True:
             for wall in lcWalls:
                 screen.blit(wall.image, wall.rect)
             screen.blit(timer.image, timer.rect)
-            screen.blit(score.image, score.rect)
+            screen.blit(score1.image, score1.rect)
+            screen.blit(score2.image, score2.rect)
             screen.blit(player1.image, player1.rect)
             screen.blit(player2.image, player2.rect)
+           # screen.blit(HealthBar, health)
           #  screen.blit(vision.image, vision.rect)
             pygame.display.flip()
             clock.tick(60)
