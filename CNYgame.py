@@ -9,7 +9,7 @@ from HUD import Score
 from Button import Button
 
 pygame.init()
-  
+
 clock = pygame.time.Clock()
 
 
@@ -39,11 +39,13 @@ walls = [Wall([13, 12], [931, 28]),
          Wall([739, 432], [755, 575]),
          Wall([62, 46], [222, 125]),
          Wall([24, 576], [932, 591]),
-         Wall([93, 351], [173, 477]),
+         Wall([93, 351], [173,
+         477]),
          Wall([482, 61], [512, 106])]
-lcWalls = [LevelChangeWall([530,30],[735,155], "map2")]
-         
-    
+lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
+           LevelChangeWall([482, 61], [512, 106], "map2")]
+
+
 
 
 
@@ -59,12 +61,13 @@ timerWaitMax =20
 
 title = Text([height/4, width/8], "Hello HUD!!", 20)
 
-score = Score([width-80,height-25], "Score:", 36)
+score1 = Score([width-220,height-25], "HUBBA:", 36)
+score2 = Score([width-80,height-25], "BUBBA:", 36)
 
 run = False
 
-startButton = Button([width/2, height-300], 
-                                     "images/Button/newbutton.png", 
+startButton = Button([width/2, height-300],
+                                     "images/Button/newbutton.png",
                                      "images/Button/newbuttonc.png")
 
 while True:
@@ -79,7 +82,7 @@ while True:
                         if event.type == pygame.MOUSEBUTTONUP:
                                 if startButton.release(event.pos):
                                         run = True
-                                        
+
                 bgColor = r,g,b
                 screen.fill(bgColor)
                 screen.blit(bgImage, bgRect)
@@ -101,7 +104,7 @@ while True:
                         player1.go("left")
                     if event.key == pygame.K_q:
                         player1.punch()
-                        
+
                     if event.key == pygame.K_UP:
                         player2.go("up")
                     if event.key == pygame.K_RIGHT:
@@ -132,13 +135,12 @@ while True:
                         player2.go("stop down")
                     if event.key == pygame.K_LEFT:
                         player2.go("stop left")
-                    if event.key == pygame.K_m:
-                        player2.go("stop punch")
-                    
-                
+
+
+
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
-                    balls += [Ball("images/Ball/spinnything.png",
+                    balls += [Ball("images/Ball/Capture5.png",
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)])
                               ]
@@ -148,42 +150,44 @@ while True:
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)])
                               ]
-      
-      
+
+
             player1.update(width, height)
             player2.update(width, height)
             timer.update()
-            score.update()
+            score1.update()
+            score2.update()
             for ball in balls:
                 ball.update(width, height)
-                
+
             for wall in walls:
                 player1.collideWall(wall)
                 player2.collideWall(wall)
             for wall in lcWalls:
                 if player1.collideLevelChangeWall(wall) or player2.collideLevelChangeWall(wall):
-					bgI = pygame.image.load("images/Screens/" + wall.target + ".png")
-					bgR = bgI.get_rect()
-					walls = []
-                
+                    bgI = pygame.image.load("images/Screens/" + wall.target + ".png")
+                    bgR = bgI.get_rect()
+                    walls = []
+
             for bully in balls:
                 for victem in balls:
                     bully.collideBall(victem)
-                    bully.collidePlayer(player1)
-                    bully.collidePlayer(player2)
-                    
-                    
+                if bully.collidePlayer(player1):
+                    score1.increaseScore()
+                if bully.collidePlayer(player2):
+                    score2.increaseScore()
+
+
             for ball in balls:
                 if not ball.living:
                     balls.remove(ball)
-                    score.increaseScore(1)
             if timerWait < timerWaitMax:
                 timerWait += 10
-                        
+
             else:
                 timerWait = 0
-                timer.increaseScore(.1)                    
-            score.update()
+                timer.increaseScore(.1)
+
             bgColor = r,g,b
             screen.fill(bgColor)
             screen.blit(bgI, bgR)
@@ -194,28 +198,29 @@ while True:
             for wall in lcWalls:
                 screen.blit(wall.image, wall.rect)
             screen.blit(timer.image, timer.rect)
-            screen.blit(score.image, score.rect)
+            screen.blit(score1.image, score1.rect)
+            screen.blit(score2.image, score2.rect)
             screen.blit(player1.image, player1.rect)
             screen.blit(player2.image, player2.rect)
             pygame.display.flip()
             clock.tick(60)
-                    
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            
-            
-            
 
-                
-                
-            
-            
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
