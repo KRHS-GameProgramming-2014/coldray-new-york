@@ -9,6 +9,7 @@ from HUD import Score
 from Button import Button
 from Vision import Vision
 from crabrock import Gun
+from health import HealthBar
 
 pygame.init()
 
@@ -53,10 +54,16 @@ lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
 player1 = PlayerBall(1, [width/3, height/3])
 player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
+#healthbar = HealthBar([width - 75, 125])  #DEFAULT: 100 MODED: 200
+
 bullets = []
 
 balls = []
-balls += [Ball("images/Ball/eye.png", [0,0], [150, 200])]
+balls += [Ball("images/Ball/crabman.png", [0,0], [150, 200])]
+
+pygame.mixer.music.load("Music/crny.mp3")
+pygame.mixer.music.play(-1, 0.0)
+
 
 
 timer = Score([80, height - 25], "Time:",36)
@@ -68,10 +75,11 @@ title = Text([height/4, width/8], "Hello HUD!!", 20)
 score1 = Score([width-220,height-25], "HUBBA:", 36)
 score2 = Score([width-80,height-25], "BUBBA:", 36)
 
+
 run = False
 
-startButton = Button([width/2, height-300],
-                                     "images/Button/newbutton.png",
+startButton = Button([width/2, height-300], 
+                                     "images/Button/newbutton.png", 
                                      "images/Button/newbuttonc.png")
 
 while True:
@@ -145,13 +153,13 @@ while True:
                 
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
-                    balls += [Ball("images/Ball/Capture5.png",
+                    balls += [Ball("images/Ball/spinnything.png",
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)])
                               ]
             if len(balls) < 2:
                 if random.randint(0, .25*60) == 0:
-                    balls += [Ball("images/Ball/eye.png",
+                    balls += [Ball("images/Ball/crabman.png",
                               [random.randint(0,10), random.randint(0,10)],
                               [random.randint(100, width-100), random.randint(100, height-100)]
                             )]
@@ -162,8 +170,13 @@ while True:
             player1.update(width, height)
             player2.update(width, height)
             timer.update()
+
             score1.update()
             score2.update()
+
+            
+            HealthBar.update
+
             
          #   for vision in visions:
            #     vision.update()
@@ -196,11 +209,21 @@ while True:
             for bully in balls:
                 for victem in balls:
                     bully.collideBall(victem)
+
                 if bully.collidePlayer(player1):
                     score1.increaseScore()
                 if bully.collidePlayer(player2):
                     score2.increaseScore()
 
+
+
+                    bully.collidePlayer(player1)
+                    bully.collidePlayer(player2)
+                    
+            #if player1.health <= 0:
+             #   player1.living = False
+                    
+                    
 
             for ball in balls:
                 if not ball.living:
@@ -229,6 +252,7 @@ while True:
             screen.blit(score2.image, score2.rect)
             screen.blit(player1.image, player1.rect)
             screen.blit(player2.image, player2.rect)
+           # screen.blit(HealthBar, health)
           #  screen.blit(vision.image, vision.rect)
             pygame.display.flip()
             clock.tick(60)

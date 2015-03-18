@@ -6,14 +6,14 @@ import pygame,math,sys,random
 class HealthBar():
     def __init__(self, position):
         self.surfaces = []
-        self.surfaces += [pygame.image.load("0health/Health/0%.png")]
-        self.surfaces += [pygame.image.load("10health/Health/10%.png")]
-        self.surfaces += [pygame.image.load("25health/Health/25%.png")]
-        self.surfaces += [pygame.image.load("40health/Health/40%.png")]
-        self.surfaces += [pygame.image.load("55health/Health/55%.png")]
-        self.surfaces += [pygame.image.load("70health/Health/70%.png")]
-        self.surfaces += [pygame.image.load("85health/Health/85%.png")]
-        self.surfaces += [pygame.image.load("100health/Health/100%1.png")]
+        self.surfaces += [pygame.image.load("images/Health/0health.png")]
+        self.surfaces += [pygame.image.load("images/Health/10health.png")]
+        self.surfaces += [pygame.image.load("images/Health/25health.png")]
+        self.surfaces += [pygame.image.load("images/Health/40health.png")]
+        self.surfaces += [pygame.image.load("images/Health/55health.png")]
+        self.surfaces += [pygame.image.load("images/Health/70health.png")]
+        self.surfaces += [pygame.image.load("images/Health/85health.png")]
+        self.surfaces += [pygame.image.load("images/Health/100health.png")]
         self.maxFrame = len(self.surfaces)-1
 #        self.surface = pygame.transform.scale(self.faces,(100,25))
         self.frame = self.maxFrame
