@@ -62,6 +62,7 @@ bullets = []
 balls = []
 balls += [Ball("images/Ball/crabman.png", [0,0], [150, 200])]
 
+
 pygame.mixer.music.load("Music/crny.mp3")
 pygame.mixer.music.play(-1, 0.0)
 
@@ -148,8 +149,11 @@ while True:
                         player2.go("stop down")
                     if event.key == pygame.K_LEFT:
                         player2.go("stop left")
-                    if event.key == pygame.K_m:
-                        player2.go("stop punch")
+                if event.type == pygame.MOUSEBUTTONDOWN:
+					if  event.button == 1:
+						print "OW!!!!!"
+						player2.punch()
+
                     
                 
             if len(balls) < 2:
@@ -171,7 +175,6 @@ while True:
             player1.update(width, height)
             player2.update(width, height)
             timer.update()
-
             score1.update()
             score2.update()
 
@@ -210,7 +213,6 @@ while True:
             for bully in balls:
                 for victem in balls:
                     bully.collideBall(victem)
-
                 if bully.collidePlayer(player1):
                     score1.increaseScore()
                 if bully.collidePlayer(player2):
@@ -253,7 +255,6 @@ while True:
             screen.blit(score2.image, score2.rect)
             screen.blit(player1.image, player1.rect)
             screen.blit(player2.image, player2.rect)
-           # screen.blit(HealthBar, health)
           #  screen.blit(vision.image, vision.rect)
             pygame.display.flip()
             clock.tick(60)
