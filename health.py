@@ -53,7 +53,7 @@ class HealthBar():
         elif percentLife > .0:
             self.frame = 1
             print percentLife
-        elif percentLife = .0:
+        elif percentLife < .0:
             self.frame = 0
             print percentLife
             self.living = False

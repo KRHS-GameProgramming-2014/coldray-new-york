@@ -75,15 +75,15 @@ class Ball():
                         self.speedx = -self.speedx*1
                         self.move()
                         self.speedx = 0
-                        print "x"
+                        #print "x"
                         self.didBouncex = True
                     if not self.didBounceY and self.speedy != 0:
                         self.speedy = -self.speedy*2
                         self.move()
                         self.speedy = 0
-                        print "y"
+                        #print "y"
                         self.didBounceY = True
-                        print "hit Ball"
+                        #print "hit Ball"
                         
                     
                     
