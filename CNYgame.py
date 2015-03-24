@@ -54,6 +54,7 @@ lcWalls = [LevelChangeWall([530,30],[735,155], "map2"),
 
 
 player1 = PlayerBall(1, [width/3, height/3])
+HealthBar
 player2 = PlayerBall(2, [2*width/3, 2*height/3])
 
 #healthbar = HealthBar([width - 75, 125])  #DEFAULT: 100 MODED: 200
