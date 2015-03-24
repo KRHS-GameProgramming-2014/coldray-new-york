@@ -10,6 +10,7 @@ from Button import Button
 from Vision import Vision
 from crabrock import Gun
 from health import HealthBar
+from pewpew import Bullet
 
 
 pygame.init()
@@ -61,7 +62,6 @@ bullets = []
 
 balls = []
 balls += [Ball("images/Ball/crabman.png", [0,0], [150, 200])]
-
 
 pygame.mixer.music.load("Music/crny.mp3")
 pygame.mixer.music.play(-1, 0.0)
@@ -153,7 +153,6 @@ while True:
 					if  event.button == 1:
 						print "OW!!!!!"
 						player2.punch()
-
                     
                 
             if len(balls) < 2:
@@ -213,6 +212,13 @@ while True:
             for bully in balls:
                 for victem in balls:
                     bully.collideBall(victem)
+
+
+                    
+            for bullet in bullets:
+                bullet.update(screenWidth, screenHeight)
+
+
                 if bully.collidePlayer(player1):
                     score1.increaseScore()
                 if bully.collidePlayer(player2):
