@@ -5,48 +5,47 @@ class PlayerBall(Ball):
     def __init__(self, playerNum, pos):
         Ball.__init__(self, "images/Player/mcp1.png", [0,0], pos)
         if playerNum == 1:
-  self.upImages = [pygame.image.load("images/Player/mcp1.PNG"),
-                             pygame.image.load("images/Player/mcp1.PNG"),
-                             pygame.image.load("images/Player/mcw1w.PNG"),
-                             pygame.image.load("images/Player/mcw2w.PNG"),
-                             pygame.image.load("images/Player/mcw1w.PNG"),
-                             pygame.image.load("images/Player/mcp1.PNG"),
-                             pygame.image.load("images/Player/mcw1w4.PNG"),
-                             pygame.image.load("images/Player/mcw2w8.PNG"),
-                             pygame.image.load("images/Player/mcw1w4.PNG")]
+            self.upImages = [pygame.image.load("images/Player/mcp1.png"),
+                             pygame.image.load("images/Player/mcw1w.png"),
+                             pygame.image.load("images/Player/mcw2w.png"),
+                             pygame.image.load("images/Player/mcw1w.png"),
+                             pygame.image.load("images/Player/mcp1.png"),
+                             pygame.image.load("images/Player/mcw1w4.png"),
+                             pygame.image.load("images/Player/mcw2w8.png"),
+                             pygame.image.load("images/Player/mcw1w4.png")]
            
-            self.downImages = [pygame.image.load("images/Player/mcp1down.PNG"),
-                               pygame.image.load("images/Player/blkw1s.PNG"),
-                               pygame.image.load("images/Player/blkw2s.PNG"),
-                               pygame.image.load("images/Player/blkw1s.PNG"),
-                               pygame.image.load("images/Player/blks.PNG"),
-                               pygame.image.load("images/Player/blkw1rs.PNG"),
-                               pygame.image.load("images/Player/blkw2rs.PNG"),
-                               pygame.image.load("images/Player/blkw1rs.PNG")]
+            self.downImages = [pygame.image.load("images/Player/mcp1down.png"),
+                               pygame.image.load("images/Player/mcw1s.png"),
+                               pygame.image.load("images/Player/mcw2s.png"),
+                               pygame.image.load("images/Player/mcw1s.png"),
+                               pygame.image.load("images/Player/mcp1down.png"),
+                               pygame.image.load("images/Player/mcw1s3.png"),
+                               pygame.image.load("images/Player/mcw2s7.png"),
+                               pygame.image.load("images/Player/mcw1s3.png")]
                                
                              
-            self.leftImages = [pygame.image.load("images/Player/blka.PNG"),
-                               pygame.image.load("images/Player/blkw1a.PNG"),
-                               pygame.image.load("images/Player/blkw2a.PNG"),
-                               pygame.image.load("images/Player/blkw1a.PNG"),
-                               pygame.image.load("images/Player/blka.PNG"),
-                               pygame.image.load("images/Player/blkw1ra.PNG"),
-                               pygame.image.load("images/Player/blkw2ra.PNG"),
-                               pygame.image.load("images/Player/blkw1ra.PNG")]
+            self.leftImages = [pygame.image.load("images/Player/mcp1left.png"),
+                                pygame.image.load("images/Player/mcw1a.png"),
+                                pygame.image.load("images/Player/mcw2a.png"),
+                                pygame.image.load("images/Player/mcw1a.png"),
+                                pygame.image.load("images/Player/mcp1left.png"),
+                                pygame.image.load("images/Player/mcw1a1.png"),
+                                pygame.image.load("images/Player/mcw2a5.png"),
+                                pygame.image.load("images/Player/mcw1a1.png")]
                                
-            self.rightImages = [pygame.image.load("images/Player/blkd.PNG"),
-                                pygame.image.load("images/Player/blkw1d.PNG"),
-                                pygame.image.load("images/Player/blkw2d.PNG"),
-                                pygame.image.load("images/Player/blkw1d.PNG"),
-                                pygame.image.load("images/Player/blkd.PNG"),
-                                pygame.image.load("images/Player/blkw1rd.PNG"),
-                                pygame.image.load("images/Player/blkw2rd.PNG"),
-                                pygame.image.load("images/Player/blkw1rd.PNG")]
+            self.rightImages = [pygame.image.load("images/Player/mcp1right.png"),
+                                pygame.image.load("images/Player/mcw1d.png"),
+                                pygame.image.load("images/Player/mcw2d.png"),
+                                pygame.image.load("images/Player/mcw1d.png"),
+                                pygame.image.load("images/Player/mcp1right.png"),
+                                pygame.image.load("images/Player/mcw1d2.png"),
+                                pygame.image.load("images/Player/mcw2d6.png"),
+                                pygame.image.load("images/Player/mcw1d2.png")]
                                 
-            self.upPunchImages = [pygame.image.load("images/Player/punchUP.PNG")]
-            self.rightPunchImages = [pygame.image.load("images/Player/punchRight.PNG")]
-            self.leftPunchImages = [pygame.image.load("images/Player/punchLeft.PNG")]
-            self.downPunchImages = [pygame.image.load("images/Player/punchDown.PNG")]
+            self.upPunchImages = [pygame.image.load("images/Player/punchUP.png")]
+            self.rightPunchImages = [pygame.image.load("images/Player/punchRight.png")]
+            self.leftPunchImages = [pygame.image.load("images/Player/punchLeft.png")]
+            self.downPunchImages = [pygame.image.load("images/Player/punchDown.png")]
         else:
             self.upImages = [pygame.image.load("images/Player2/blkw.PNG"),
                              pygame.image.load("images/Player2/blkw1w.PNG"),
