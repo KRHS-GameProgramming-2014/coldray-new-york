@@ -5,26 +5,47 @@ class PlayerBall(Ball):
     def __init__(self, playerNum, pos):
         Ball.__init__(self, "images/Player/mcp1.png", [0,0], pos)
         if playerNum == 1:
-            self.upImages = [pygame.image.load("images/Player/mcp1.PNG"),
-                             pygame.image.load("images/Player/mcp2.PNG"),
-                             pygame.image.load("images/Player/mcp3.PNG")]
-                          
-            self.downImages = [pygame.image.load("images/Player/mcp1down.PNG"),
-                               pygame.image.load("images/Player/mcp2down.PNG"),
-                               pygame.image.load("images/Player/mcp3down.PNG")]
-                             
-            self.leftImages = [pygame.image.load("images/Player/mcp1left.PNG"),
-                               pygame.image.load("images/Player/mcp2left.PNG"),
-                               pygame.image.load("images/Player/mcp3left.PNG")]
+            self.upImages = [pygame.image.load("images/Player/mcp1.png"),
+                             pygame.image.load("images/Player/mcw1w.png"),
+                             pygame.image.load("images/Player/mcw2w.png"),
+                             pygame.image.load("images/Player/mcw1w.png"),
+                             pygame.image.load("images/Player/mcp1.png"),
+                             pygame.image.load("images/Player/mcw1w4.png"),
+                             pygame.image.load("images/Player/mcw2w8.png"),
+                             pygame.image.load("images/Player/mcw1w4.png")]
+           
+            self.downImages = [pygame.image.load("images/Player/mcp1down.png"),
+                               pygame.image.load("images/Player/mcw1s.png"),
+                               pygame.image.load("images/Player/mcw2s.png"),
+                               pygame.image.load("images/Player/mcw1s.png"),
+                               pygame.image.load("images/Player/mcp1down.png"),
+                               pygame.image.load("images/Player/mcw1s3.png"),
+                               pygame.image.load("images/Player/mcw2s7.png"),
+                               pygame.image.load("images/Player/mcw1s3.png")]
                                
-            self.rightImages = [pygame.image.load("images/Player/mcp1right.PNG"),
-                                pygame.image.load("images/Player/mcp2right.PNG"),
-                                pygame.image.load("images/Player/mcp3right.PNG")]
+                             
+            self.leftImages = [pygame.image.load("images/Player/mcp1left.png"),
+                                pygame.image.load("images/Player/mcw1a.png"),
+                                pygame.image.load("images/Player/mcw2a.png"),
+                                pygame.image.load("images/Player/mcw1a.png"),
+                                pygame.image.load("images/Player/mcp1left.png"),
+                                pygame.image.load("images/Player/mcw1a1.png"),
+                                pygame.image.load("images/Player/mcw2a5.png"),
+                                pygame.image.load("images/Player/mcw1a1.png")]
+                               
+            self.rightImages = [pygame.image.load("images/Player/mcp1right.png"),
+                                pygame.image.load("images/Player/mcw1d.png"),
+                                pygame.image.load("images/Player/mcw2d.png"),
+                                pygame.image.load("images/Player/mcw1d.png"),
+                                pygame.image.load("images/Player/mcp1right.png"),
+                                pygame.image.load("images/Player/mcw1d2.png"),
+                                pygame.image.load("images/Player/mcw2d6.png"),
+                                pygame.image.load("images/Player/mcw1d2.png")]
                                 
-            self.upPunchImages = [pygame.image.load("images/Player/punchUP.PNG")]
-            self.rightPunchImages = [pygame.image.load("images/Player/punchRight.PNG")]
-            self.leftPunchImages = [pygame.image.load("images/Player/punchLeft.PNG")]
-            self.downPunchImages = [pygame.image.load("images/Player/punchDown.PNG")]
+            self.upPunchImages = [pygame.image.load("images/Player/punchUP.png")]
+            self.rightPunchImages = [pygame.image.load("images/Player/punchRight.png")]
+            self.leftPunchImages = [pygame.image.load("images/Player/punchLeft.png")]
+            self.downPunchImages = [pygame.image.load("images/Player/punchDown.png")]
         else:
             self.upImages = [pygame.image.load("images/Player2/blkw.PNG"),
                              pygame.image.load("images/Player2/blkw1w.PNG"),
@@ -98,33 +119,33 @@ class PlayerBall(Ball):
         
     def collideEdge(self, width, height):
         if not self.didBounceX:
-            print "trying to hit Wall"
+            #print "trying to hit Wall"
             if self.rect.left < 0 or self.rect.right > width:
                 self.speedx = 0
                 self.didBounceX = True
-                print "hit xWall"
+                #print "hit xWall"
         if not self.didBounceY:
             if self.rect.top < 0 or self.rect.bottom > height:
                 self.speedy = 0
                 self.didBounceY = True
-                print "hit xWall"
+                #print "hit xWall"
     
     def collideWall(self, wall):
         if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
             if self.rect.bottom > wall.rect.top and self.rect.top < wall.rect.bottom:
                 if not self.didBounceX and self.speedx != 0:
-                    self.speedx = -self.speedx*1
+                    self.speedx = -self.speedx*2
                     self.move()
                     self.speedx = 0
-                    print "x"
+                    #print "x"
                     self.didBouncex = True
                 if not self.didBounceY and self.speedy != 0:
                     self.speedy = -self.speedy*2
                     self.move()
                     self.speedy = 0
-                    print "y"
+                    #print "y"
                     self.didBounceY = True
-                    print "hit Ball"
+                    #print "hit Ball"
     
     def collideLevelChangeWall(self, wall):
         if self.rect.right > wall.rect.left and self.rect.left < wall.rect.right:
@@ -168,7 +189,7 @@ class PlayerBall(Ball):
                 
             if self.frame > self.maxFrame:
                 self.frame = 0
-            print self.frame, self.maxFrame, len(self.images)
+            #print self.frame, self.maxFrame, len(self.images)
             self.image = self.images[self.frame]
             self.rect = self.image.get_rect(center = self.rect.center)
 
@@ -219,7 +240,7 @@ class PlayerBall(Ball):
             if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
                 if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                     self.living = False
-                    print "dead"  
-
+                    #print "dead"  
+    
 
 
